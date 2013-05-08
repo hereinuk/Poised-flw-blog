@@ -1,7 +1,10 @@
 ---
-layout: page
+layout: post
 title: "迁徙个人博客的点滴"
-tagline: "个中酸甜唯我知"
+description: "migration to my own blog"
+tagline: "个中酸甜只有我知"
+category: record
+tags: [life]
 ---
 {% include JB/setup %}
 
