@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>{{ page.title }} <small>Supporting tagline</small></h1>
+    <h1>{{ page.title }} <small>{{ page.tagline }}</small></h1>
 </div>
 
 <div class="row">
@@ -38,3 +38,7 @@
   {% endunless %}  
   </div>
 </div>
+<span id="totop">
+    <a href="javascript:void(0)"></a>
+</span>
+{% include JB/totop %}
