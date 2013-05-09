@@ -45,8 +45,8 @@ tags: ['闭包','js作用域']
                     if(true)
                 var b = 8;
         }    
-            alert(i);//10,i在f1()范围内都是可见的
-            f2();
+        alert(i);//10,i在f1()范围内都是可见的
+        f2();
         alert(b);//undefined,b的可见性止于f2();
     }
     f1();
@@ -182,7 +182,7 @@ So:当我们调用f();的时候会发生什么情况?
 
 #### 实例3:
 
-THEN: What is Closure?
+What is Closure?
 
 从我们上面的这么多讨论可以得到一个比较通俗的理解:闭包就是一种方法:想办法(return/gloabl function)让外界访问到父辈的私有变量.
 
