@@ -3,7 +3,7 @@ layout: post
 title: "UI布局的松耦合"
 description: "网页设计中UI的松耦合"
 category: javascript
-tags: []
+tags: ['松耦合','JS模板']
 ---
 {% include JB/setup %}
 
