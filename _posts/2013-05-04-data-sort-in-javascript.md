@@ -3,8 +3,9 @@ layout: post
 title: "数据结构--Javascript--排序篇"
 description: "用Javascript实现经典的算法"
 category: javascript
-permalink: /javascript/2013/05/04/data-sort-in-javascript
-tags: ['数据结构','排序']
+tags:
+  - 数据结构
+  - 排序
 ---
 {% include JB/setup %}
 

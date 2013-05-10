@@ -3,8 +3,9 @@ layout: post
 title: "UI布局的松耦合"
 description: "网页设计中UI的松耦合"
 category: javascript
-permalink: /javascript/2013/05/05/loose-coupling-of-ui-layers
-tags: ['松耦合','JS模板']
+tags:
+  - 松耦合
+  - JS模板
 ---
 {% include JB/setup %}
 
