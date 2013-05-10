@@ -3,7 +3,7 @@ layout: post
 title: "Javascript 笔记(2)----闭包"
 description: "完全理解javascript的闭包对深入理解js有很大的帮助"
 category: javascript
-tags: ['闭包','js作用域']
+tags: ['闭包']
 ---
 {% include JB/setup %}
 
