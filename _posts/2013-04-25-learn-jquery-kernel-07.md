@@ -3,6 +3,7 @@ layout: post
 title: "jquery内核学习(7)--DOM元素选择"
 description: "封装一些js的原生方法"
 category: jquery
+permalink: /jquery/2013/04/25/learn-jquery-kernel-07
 tags: ['jquery内核','DOM']
 ---
 {% include JB/setup %}

@@ -3,6 +3,7 @@ layout: post
 title: "编译原理----手写编译器(2)----LR(1)分析表的构造"
 description: "动手写自己的编译器"
 category: javascript
+permalink: /javascript/2013/04/13/write-compiler-with-javascript_02
 tags: ['编译原理','LR(1)']
 ---
 {% include JB/setup %}
