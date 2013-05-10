@@ -3,8 +3,9 @@ layout: post
 title: "编译原理--LR(1)分析表构建--JavaScript版"
 description: "用js写的一个类bash语言的解释器"
 category: javascript
-permalink: /javascript/2013/04/09/write-compiler-with-javascript_lr1
-tags: ['编译原理','LR(1)']
+tags:
+  - 编译原理
+  - LR(1)
 ---
 {% include JB/setup %}
 
