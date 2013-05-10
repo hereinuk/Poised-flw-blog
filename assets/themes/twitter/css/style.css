@@ -72,9 +72,9 @@ body {
 /* return to totop */
 #totop a, #totp a:visited {
     position: fixed;
-    right: -webkit-calc((100% - 860px) / 2 - 14px);
-    right: -moz-calc((100% - 860px) / 2 - 14px);
-    right: calc((100% - 860px) / 2 - 14px);
+    right: -webkit-calc((100% - 860px) / 2 - 20px);
+    right: -moz-calc((100% - 860px) / 2 - 20px);
+    right: calc((100% - 860px) / 2 - 20px);
     bottom: 50px;
     background: transparent url(../img/top.gif) no-repeat 0 0;
     width: 14px;
