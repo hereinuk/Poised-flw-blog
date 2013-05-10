@@ -65,3 +65,74 @@ tagline: "个中酸甜唯我知"
 的, 但是后来我换了`oh-my-zsh`, 环境什么的貌似也没动过, 反正就是不能用`rvm`升级, 真不知道怎么这么奇葩!
 实在不行了, 就去淘宝镜像上下了一个`ruby-2.0.0`的源码包手动编译给安装了(真无语啊, 当时这么就只纠结于`rvm`, 
 安装而忘记了这个途径呢)! 到现在博客勉强能用了, 先这样吧, 把考试过了再修修改改.
+
+### 遇到的问题
+
+- May 07, 2013
+
+> 用了bootstrap的模板导航条内容怎么改?
+
+把所有`_includes`下的模板都看完了, `_layouts`下的也找了, 就是没有导航条栏目的
+定义
+
+**解决办法**
+
+> + 在`_includes/themes/twitter/default.html`中写成静态的导航条.
+
+    \{\% assign pages_list = site.pages \%\}
+    \{\% assign group = 'navigation' \%\}
+    \{\% include JB/pages_list \%\}
+
+    <!--改写成-->
+
+    <li>
+        <a href="/archive.html">Archive</a>
+    </li>
+    <li>
+        <a href="/categories.html">Category</a>
+    </li>
+    <li>
+        <a href="/tags.html">Tags</a>
+    </li>
+    <li>
+        <a href="/rss.xml">RSS</a>
+    </li>
+    <li>
+        <a href="http://github.com/luofei2011" target="_blank">Github</a>
+    </li>
+
+> + 给每个页面增加一个权重`weight`, 在遍历显示的时候根据`weight`值进行相应的显示
+
+    ---
+    weight: (1/2/3/4/5...)
+    ---
+
+- May 08, 2013
+
+> `ruby-1.9.2`上安装不了`rdiscount`
+
+  以前学`ruby on rails`的时候装的`ruby`一直没更新过, 截至目前`ruby`版本为2.0.0
+
+  **解决办法:**
+
+  _升级`ruby`版本到1.9.3以上_
+
+- May 09, 2013
+
+> 迁移好的博客在本地显示正常, 放到网上后部分文章乱码.
+  
+  经检查发现, 不能正常访问的文章均有共同点:
+
+    ---
+    tags: ['item1','item2']
+    ---
+
+  原来是语法错误, 改正后:
+
+    ---
+    tags:
+      - item1
+      - item2
+    ---
+  
+  正常显示!
