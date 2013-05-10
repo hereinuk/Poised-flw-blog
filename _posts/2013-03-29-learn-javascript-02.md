@@ -3,6 +3,7 @@ layout: post
 title: "Javascript 笔记(2)----闭包"
 description: "完全理解javascript的闭包对深入理解js有很大的帮助"
 category: javascript
+permalink: /javascript/2013/03/29/learn-javascript-02 
 tags: ['闭包']
 ---
 {% include JB/setup %}
