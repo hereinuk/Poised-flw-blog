@@ -1,6 +1,6 @@
 # 这是我的个人网站（博客）
 
-[www.poised-flw.com](www.poised-flw.com)
+[http://www.poised-flw.com](http://www.poised-flw.com)
 
 # Jekyll-Bootstrap
 
