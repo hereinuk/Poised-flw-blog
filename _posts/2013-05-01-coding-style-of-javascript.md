@@ -444,4 +444,327 @@ by [Nicholas C. Zakas](http://book.douban.com/search/Nicholas%20C.%20Zakas).
     var num = 10.8;
     var bl = false;
 
-以上基本是一些比较流行的JS编码风格, 想了解更多个人建议去读优秀的开源代码!模仿别人的编码风格...... 
+## 从代码中分离配置数据
+
+代码的本质就是一堆指令, 然后就是通过这些指令来一顿的修改数据或者传递数据, 然后产
+生设想的结果.
+
+对于一些插件, 当我们需要根据自己的需求进行修改数据时就必须要涉及到修改源代码. 很
+有可能在不知情的情况下就修改错了东西导致插件不能正常运行, 因此对于一个好的应用来
+说把配置数据和代码分离是一种非常好的设计方式.
+
+#### 什么是配置数据?
+
+配置数据就是一些硬编码的数据. 如:
+
+    // 嵌入到代码中的配置数据
+    function validate(value) {
+        if (!value) {
+            alert("Invalid value");
+            location.href = "/errors/invalid.php";
+        }
+    }
+
+    function toggleSelected(element) {
+        if (hasClass(element, "selected")) {
+            removeClass(element, "selected");
+        } else {
+            addClass(element, "selected");
+        }
+    }
+
+根据对上面代码的观察, 我们剥离出其中的配置数据
+
+    var config = {
+        MSG_INVALID_VALUE: "Invalid value",
+        URL_INVALID: "/errors/invalid.php",
+        CSS_SELECTED: "selected"
+    };
+
+    // 然后代码修改为这样
+    function validate(value) {
+        if (!value) {
+            alert(config.MSG_INVALID_VALUE);
+            location.href = config.URL_INVALID;
+        }
+    }
+
+    function toggleSelected(element) {
+        if (hasClass(element, config.CSS_SELECTED)) {
+            removeClass(element, config.CSS_SELECTED);
+        } else {
+            addClass(element, config.CSS_SELECTED);
+        }
+    }
+
+## 适当的`Throw Error`为调试代码
+
+从程序员的角度来讲, 我们要做的是尽量的避免错误, 而不是抛出错误. 但是在JavaScript
+中, 适当的抛出错误是一门艺术! 当你在一些容易出错的地方设置抛出错误时, 这将会大大
+减少你的debugging时间.
+
+#### Error对象
+
+错误就是程序中一些不希望发生的东西发生, 或者是传递给函数的错误参数; 或者是数值运
+算中不合法的操作符等. 编程语言会定义一些规则, 当错误发生的时候程序员能准确的定位
+到它. 当然, 若程序执行没有预期的结果并且也没抛出错误的话对调试来说相当的困难, 所
+以说适当的抛出错误对于程序员来说未必是坏事.
+
+由于一些浏览器的错误提示对于错误的准确定位不是很准确, 因此抛出自定义的错误信息对
+调试来说有事半功倍的效果.
+
+#### JavaScript中的错误机制
+
+简单的通过`throw`来抛出一个错误, 其中`Error`是最典型的.
+
+    throw new Error('Something bad happended');
+
+`Error`是JS内建对象, 接收一个字符串参数. 这个参数就是弹出的错误信息.但是这个错误
+信息不能被`try-catch`结构捕获到.
+
+当然, 如果你喜欢, 你可以抛出任何类型的数据
+
+    throw { name: "poised-flw" };
+    throw true;
+    throw 1234566;
+    throw new Date();
+
+但是需要记住一点, 当不是通过`try-catch`结构时; `throw`抛出的任何值一定会导致一个
+错误!
+
+#### 抛错的优点
+
+反正一个原则, 抛错的目的在于: 方便快捷的调试出错信息, 至于信息怎么定义看个人的爱
+好.
+
+    function getDivs( element ) {
+        return element.getElementsByTagName("div");
+    }
+
+这个函数的目的在于返回一个节点元素范围内的所有div节点. 前提是`element`必须是DOM
+元素. 当`element`为`null`时, 就会抛出错误:
+
+    TypeError: Cannot call method 'getElemntsByTagName' of null
+
+只是大概的告诉了你`getElementsByTagName`有错, 但是当页面中有很多这个方法的时候寻
+找起来相当不方便, 因此DIY自己的错误提示信息:
+
+    function getDivs(element) {
+        
+        if (element && element.getElementsByTagName) {
+            return element.getElementsByTagName("div");
+        } else {
+            throw new Error("getDivs(): Argument must be a DOM element.");
+        }
+    }
+
+这样, 再当错误发生的时候就能准确的定位到发生错误的位置了.
+
+#### 何时候抛出错误
+
+由于JS中并没有类型或者参数的检查, 因此在一些函数中需要对传递的参数进行类型检测.
+
+    // Bad: Too much error checking
+    function addClass(element, className) {
+        if (!element || typeof element.className != "string") {
+            throw new Error("addClass(): First argument must be a DOM element.");
+        }
+
+        if (typeof className != "string") {
+            throw new Error("addClass(): Second argument must be a string.");
+        }
+
+        element.className += " " + className;
+    }
+
+这个函数的功能只是简单的给一个给定的元素添加一个class, 太多冗余的检测:
+
+    // Good
+    function addClass(element, className) {
+        if (!element || typeof element.className != "string") {
+            throw new Error("addClass(): First argument must be a DOM element.");
+        }
+
+        element.className += "" + className;
+    }
+
+#### `try-catch`语句
+
+基本语法是这样的:
+
+    try {
+        somethingThatMightCauseAnError();
+    } catch (e) {
+        handleError(e);
+    }
+
+当错误发生在`try`块的时候, 就会马上停止执行并且跳到`catch`块. 当`catch`块中提供
+了错误处理的时候将会被执行. 还有一种结构是带`finally`的.
+
+    try {
+        somethingThatMightCauseAnError();
+    } catch (e) {
+        handleError(e);
+    } finally {
+        continueDoingOtherStuff();
+    }
+
+但是这个结构有给棘手的地方, 例如: 当`try`块中包含有`return`语句的时候, `return`
+语句并不能被真正的执行, 它必须等到`finally`执行完后才能执行. 由于这个问题
+`finally`使用的并不是很频繁, 但是在错误处理方面`finally`还是一把利器.
+
+有一点需要注意: `catch`中不能为空.
+
+    // Bad
+    try {
+        somethingThatMightCauseAnError();
+    } catch (e) {
+        // noop
+    }
+
+当错误发生的时候, 你应该想的是怎么去从错误中恢复它, 不管怎样, 对于发生的错误都应
+该进行处理而不是忽略它.
+
+## 不要修改别人的对象
+
+时刻记住这几条规则:
+
+1. 不要重写别人的方法
+
+2. 不要在别人的对象上随意添加方法, 或许下次这个库更新的时候就会加上这个方法呢? 
+
+3. 不要随便删除别人库中的方法, 或许库中的方法都有很强的依赖关系
+
+当然, 若是自己一个开发项目, 别人的东西想怎么改就在改. 但是团队开发中, 按照自己的
+意愿改了不但会导致命名冲突, 还有可能会发生很多意想不到的事. 所以最好的方法就是别
+动别人的, 想添加额外的通过别人给你题动的接口.
+
+如jQuery的extend:
+
+    $.extend();
+
+#### 基于对象的继承
+
+在ECMAScript5中能通过`Object.create()`方法很容易的实现基于对象的继承而不需要构造
+函数.
+
+    var person = {
+        name: 'poised-flw',
+        syaName: function() {
+            alert(this.name);
+        }
+    };
+
+    var myPerson = Object.create(person);
+    
+    myPerson.sayName(); // 'poised-flw'
+
+基于对象`person`创建了一个对象`myPerson`, 然后`myPerson`就能访问`person`中的所有
+属性和方法. 除非`myPerson`重写了自己的方法或者属性.
+
+    myPerson.sayName = function() {
+        alert('my own Property');
+    }
+
+    myPerson.sayName(); // "my own Property"
+    person.sayName();   // "poised-flw"
+
+`Object.create()`方法还接收第二个参数, 用来给创建的实例对象添加自己的属性或者方
+法.
+
+    var myPerson = Object.create(person, {
+        name: {
+         value: "Greg"
+        }
+    });
+
+    myPerson.sayName(); // "Greg"
+    person.sayName();   // "poised-flw"
+
+#### 基于类的继承
+
+就是通过一个构造函数的`prototype`属性来继承一个内建的对象实例.
+
+    function MyError( message ) {
+        this.message = message;
+    }
+
+    MyError.prototype = new Error();    // 通过原型链继承Error的实例, Error称为超类
+
+这样, 当通过MyError创建一个实例时, 它将能访问到它自己的属性或者方法以及继承自
+`Error`的属性或者方法.
+
+    var error = new MyError("Something bad happended");
+
+    console.log(error instanceof Error);    // true
+    console.log(error instanceof MyError);  // true
+
+可见, 基于类的继承主要包含两个步骤:
+
+1. 原型链继承
+
+2. 通过构造函数创建实例实现继承
+
+>
+
+    function Person(name) {
+        this.name = name;
+    }
+
+    function Author(name) {
+        Person.call(this, name);    // inherit constructor
+    }
+
+    Author.prototype = new Person();
+    
+在上面的代码中, `Author`类继承自`Person`, 事实上`name`属性被`Person`类管理. 所以
+`Person.call(this, name)`是调用`Person`这个构造函数来定义`name`属性. 此时
+`Person`中的`this`指向`Author`对象, 故最终`name`成为了新的`Author`对象上的一个属性.
+
+    var person = new Author('poised-flw');
+
+    person.name;    // "poised-flw"
+    person.constructor; // "Person"
+
+    person instanceof Author;   // true
+    person instanceof Person;   // true
+
+可以看出, 基于类的继承允许你灵活的创建新的对象, 定义一个类的时候允许你创建很多的
+实例. 且这些实例都是继承自同一个超类的. 当然你的新类中就可以根据自己的需求定义自己的属
+性或者方法.
+
+#### 阻止修改类
+
+有三种模式: `Prevent extension`, `seal`, `freeze`. 前者不允许添加方法或者属性,
+但是能修改或者删除某个属性或者方法;接下来的在前面一个的基础上不允许删除属性或者方法;
+最后一个在上一个的基础上不允许修改属性或者方法, 即对象上的一切都是只读的.
+
+每种模式都有两个方法, 一个是进入这种模式, 还有一个是检查是否处于这个模式, 返回布
+尔值.
+
+    var person = {
+        name: "poised-flw"
+    };
+
+    // 锁定这个对象
+    Object.preventExtension( person );
+
+    console.log( Object.isExtensible( person ) );   // false
+
+    // 现在来修改它的属性试试
+    person.age = 21;
+
+    person.age; // 'undefined'
+
+在`strict`模式中如上的修改是会报错的. 其它的两种方法用法和上面相似.
+
+    Object.seal(person);
+    Object.isSealed(person);
+
+    Object.freeze(person);
+    Object.isFrozen(person);
+
+所以在自己的库开发中, 可以通过上面的几种方式来阻止类被修改. 当然, 作者还建议, 若
+阻止了修改, 则强烈建议使用`strict`模式, 因为在非严格模式下, 修改一个类的时候虽然
+失败了但是没有任何的提醒, 但是在严格模式下当你试图修改一个锁定的类时将会抛出错误
+.
