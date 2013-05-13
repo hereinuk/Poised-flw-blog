@@ -273,3 +273,67 @@ jquery中定义了`get()`, `index()`来定位元素；还定义了`get(index)`, 
         }
 
 ## 复制元素
+
+模仿数组的`contact`方法定义了一个全局的`merge`函数.
+
+    merge: function( first, second ) {
+
+        // IE, Opera会重写length属性, 故先缓存length的值
+        var i = 0, elem, pos = first.length;
+
+        // 兼容IE
+        if ( !jQuery.support.getAll ) {
+            while( (elem = second[ i++ ]) != null )
+                if ( elem.nodeType != 8 )   // 注释节点
+                    first[ pos++ ] = elem;
+        } else
+            while ( (elem = second[i++]) != null )
+                first[ pos++ ] = elem;
+
+        return first;
+    }
+
+## 添加元素
+
+该方法能把与表达式匹配的元素添加到jquery对象中.
+
+    add: function( selector ) {
+        // pushStack把所有的类数组对象全部推进到jquery对象
+        return this.pushStack( jQuery.unique( jQuery.merge( // 去重并合并
+                    this.get(), // 获取已经有的jquery对象, 在它的基础上进行添加
+                    typeof selector === 'string' ?  // 判断是否为选择器
+                    jQuery( selector ) :    // 若是选择器则直接进行选择
+                    jQuery.makeArray( selector );   // 返回一个数组对象
+        )));
+    }
+
+## 映射元素
+
+jquery定义了两个映射方法, `each`对集合中的每个元素都执行回调函数; `map`方法还能
+收集每个回调函数返回结果组成的新集合.
+
+    each: function( callback, args ) {
+        return jQuery.each( this, callback, args );
+    }
+
+是通过jQuery.each()公共函数来实现迭代过程的. 注意, 上面的args是为回调函数准备的
+参数.
+
+    map: function( callback ) {
+        return this.pushStack( jQuery.map( this, function(elem, i) {
+                return callback.call( elem, i, elem );
+        }));
+    }
+
+    // map()公共方法
+    map: function( elems, callback ) {
+             var ret = [];
+             for ( var i = 0; length = elems.length; i < length; i++ ) {
+                 var value = callback( elems[i], i );
+                 if ( value != null ) {
+                     ret[ ret.length ] = value;
+                 }
+
+                 return ret.contact.apply( [], ret ); // 连接返回
+             }
+    }
