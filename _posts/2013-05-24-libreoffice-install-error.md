@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "libreoffice install error"
-description: "lake of libreoffice-common(> 1:3.5.7)"
+title: "常见错误的解决办法"
+description: "常见问题解答"
 category: "电脑故障"
 tags: 
   - 电脑故障
@@ -14,6 +14,10 @@ tags:
 
 > ubuntu-12.04.1 下安装libreoffice出现不能安装, 不能卸载软件的问题.
 
+	#问题描述
+	lake of libreoffice-common(> 1:3.5.7)
+
+	#解决
     sudo apt-get upgrade
 
     /*
@@ -60,3 +64,73 @@ tags:
     sudo dpkg --remove python-uno
 
 然后问题就解决了, 若想再装libreoffice需要先把openoffice卸载了再安装.
+
+- June 02, 2013
+
+> How to use Zend-Framework
+
+	#问题描述
+	/*
+		今天碰巧接触到了这个框架，有一个现成的应用是基于这个框架的。
+		但是却一直进入不了这个应用......
+
+		localhost/constollerName/acrionName 
+
+		正常的框架不都是这么进去的么...尝试了很多次还是不行，最后从头配了一次这个框架。
+		这里几下学习过程供以后参考
+	*/
+
+	#配置过程（windows）
+	#1. 启用httpd.conf下的mod_rewrite模块（我的是xampp集成环境D:/xampp/apache/conf/httpd.conf）
+		去掉：LoadModule rewrite_module modules/mod_rewrite.so前的注释'#'
+	#2. 在php.ini中追加路径（最好这么做）
+		; Zend Framework
+		include_path = ".;D:\php\PEAR\library"  
+		;意思就是把Zend这个框架放到library这个目录下，在php文件可以直接include/require.
+	#3. 在应用根目录下添加重定向文件.htaccess
+		RewriteEngine on
+		RewriteRule .* index.php
+
+		php_flag magic_quotes_gpc off
+		php_flag register_globals off
+	#4. 根目录添加启动入口index.php
+		<?php
+			error_reporting(E_ALL | E_STRICT);
+			date_default_timezone_set('Europe/London');
+			
+			set_include_path('.' . PATH_SEPARATOR . './library'
+				. PATH_SEPARATOR . './application/models/'
+				. PATH_SEPATATOR . get_include_path());
+			include "Zend/Loader.php";
+			Zend_Loader::loadClass('Zend_Controller_Front');
+			
+			// setup controller
+			$index = Zend_Controller_Front::getInstance();
+			$index->throwExceptions(true);
+			$index->setControllerDirectory('./application/controllers');
+
+			// run this
+			$index->dispatch();
+		?>
+	#5. 控制器中大概格式这样
+		<?php
+			class IndexController extends Zend_Controller_Action {
+				function init() {
+					$this->initView();
+					$this->view->baseUrl = $this->_request->getBaseUrl();
+				}
+
+				function indexAction() {
+					$this->view-title = "test title";
+					$this->render();
+				}
+			}
+		?>
+	#6. 数据库配置(Mysql)
+		resources.db.adapter = "PDO_MYSQL"
+		resources.db.params.host = "localhost"
+		resources.db.params.username = "root"
+		resources.db.params.password = "root"
+		resources.db.params.dbname = "database_name"
+
+就到这里吧，有机会用这框架的时候再深入去了解了解。
