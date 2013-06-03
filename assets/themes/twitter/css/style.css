@@ -3,7 +3,43 @@ html, body {
   background-color: #eee;
 }
 body {
-  padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+    padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+    font-family: "宋体";
+    color: #333;
+}
+/*Rewirte h1-h6 tag*/
+h1 {
+    font-size: 22px;
+}
+h2 {
+    font-size: 20px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5, h6 {
+    font-size: 14px;
+}
+h1 small {
+    font-size: 15px;
+}
+code {
+    margin: 0 2px;
+    font-family: Monaco,Menlo, "Courier New", monospace;
+    font-size: 12px !important;
+    background-color: #f8f8f8;
+    color: #444;
+    padding: 0;
+    border: 1px solid #dedede;
+}
+pre.prettyprint code {
+    border: none !important;
+}
+.page-header {
+    padding: 10px 0 0 20px !important;
 }
 .container > footer p {
   text-align: center; /* center align it with the container */
