@@ -144,3 +144,23 @@ tagline: "个中酸甜唯我知"
 虽然免费的`.tk`域名用起来也没啥不好的， 但是出于各方面的考虑还是换成了`.com`域名，早上体检完后在[goDaddy](http://www.godaddy.com)
 上逛了一圈，`.com`需要`$7.8/yer`，不过这个好像还是信息公开的，后来去[中国万网](http://www.net.cn)上一看`.com`才59一年，彻底
 心动了. 然后忍不住手残的买了一个...然后就是现在这个样子了.
+
+June 03, 2013
+
+> The page build failed with the following error:
+> page build failed
+> For information on troubleshooting Jekyll see https://help.github.com/articles/using-jekyll-with-pages#troubleshooting
+> If you have any questions please contact GitHub Support.
+
+由于这两个星期都在考试, 博客基本没有更新. 大概在上个月25号的时候写了一共空的页面
+push上去, 本地运行都是没有问题的, 可是每push一次, 就会给我如上的邮件. google了很
+多解决办法都不行, 最后发现是markdown解释的时候出错了.
+
+    #错误
+    permalink: "some_path.html"
+
+    #我在文章里面加了这个参数, 本想让文件成这样的固定链接, 但是本地运行是正常的.
+    可push了就是不行
+
+    #解决办法
+    #暂时没发现什么好的解决办法, 只是把这句给删除了.
