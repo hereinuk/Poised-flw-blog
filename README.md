@@ -2,6 +2,10 @@
 
 [http://www.poised-flw.com](http://www.poised-flw.com)
 
+# 新增demo项目
+
+[http://www.poised-flw.com/demo](http://www.poised-flw.com/demo)
+
 # Jekyll-Bootstrap
 
 The quickest way to start and publish your Jekyll powered blog. 100% compatible with GitHub pages
