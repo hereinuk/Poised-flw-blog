@@ -8,6 +8,10 @@ body {
     color: #333;
 }
 /*Rewirte h1-h6 tag*/
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    color: #c30;
+}
 h1 {
     font-size: 22px;
 }
@@ -94,6 +98,9 @@ pre.prettyprint code {
 	color:#005F6B;
 	border-radius: 3px;
 	text-decoration:none;
+}
+.tag_box a:hover {
+    color: green;
 }
 .tag_box a span{
 	vertical-align:super;
