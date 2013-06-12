@@ -7,6 +7,13 @@ body {
     color: #333;
     font: 16px Comic Sans MS, 宋体, Arial, sans-serif;
 }
+a {
+    color: #3e62a6;
+    outline: 0;
+}
+a:hover {
+    color: #c00;
+}
 /*Rewirte h1-h6 tag*/
 h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
