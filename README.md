@@ -1,12 +1,16 @@
-# 这是我的个人网站（博客）
+## 这是我的个人网站（博客）
 
 [http://www.poised-flw.com](http://www.poised-flw.com)
 
-# 新增demo项目
+## demo地址
 
-[http://www.poised-flw.com/demo](http://www.poised-flw.com/demo)
+[http://www.poised-flw.tk](http://www.poised-flw.tk)
 
-# Jekyll-Bootstrap
+## 更新日志
+
+[https://github.com/luofei2011/Poised-flw-blog/blob/gh-pages/changelog.md](https://github.com/luofei2011/Poised-flw-blog/blob/gh-pages/changelog.md)
+
+## Jekyll-Bootstrap
 
 The quickest way to start and publish your Jekyll powered blog. 100% compatible with GitHub pages
 
