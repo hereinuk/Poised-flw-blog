@@ -3,29 +3,27 @@ layout: default
 ---
 {% include JB/setup %}
 
-<div id="content">
-    <div class="text-post posts">
+<div class="text-post posts">
 
-	{% for post in site.posts %}
+{% for post in site.posts %}
 
-        <div class="posts-item">
+    <div class="posts-item">
 
-            <div class="arrow-time">
-                <cite>{{ post.date | date_to_long_string }}</cite>
-            </div>
+        <h1><a class="post_title" href="{{ post.url }}">{{post.title}}</a></h1>
 
-            <h1><a class="post_title" href="{{ post.url }}">{{post.title}}</a></h1>
-
-            <div class="caption rich-content">
-                {{ post.content | split: '<!--more-->' | first }}
-            </div>
-
-            <div class="read-more"><a class="post_title" href="{{ post.url }}">
-            不信你打开 >></a></div>
-
+        <div class="caption rich-content">
+            {{ post.content | split: '<!--more-->' | first }}
         </div>
 
-	{% endfor %}
+        <div class="read-more"><a class="post_title" href="{{ post.url }}">
+        不信你打开 >></a></div>
+
+        <div class="arrow-time">
+            <cite>{{ post.date | date_to_long_string }}</cite>
+        </div>
 
     </div>
+
+{% endfor %}
+
 </div>
