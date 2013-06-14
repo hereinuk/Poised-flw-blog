@@ -32,6 +32,7 @@ tags: ['object']
     typeof p; //undefined
 
 因为没有加new关键字,就像调用普通函数一样调用Person()方法,注意,这时的this指向的是window对象.
+<!--more--> 
 
 ### constructor
 

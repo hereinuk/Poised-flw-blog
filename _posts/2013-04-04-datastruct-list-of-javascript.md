@@ -34,7 +34,7 @@ tags: ['数据结构']
              }else{
                  var in_len = value.length;            //需要插入元素的长度
              }
-     
+
              //第一次循环水平移位
              for(var i=mv_len; i>0; i--){
                  this[len+in_len] = this[len--];

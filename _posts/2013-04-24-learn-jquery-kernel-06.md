@@ -29,6 +29,7 @@ tags: ['jquery内核']
         }
         return this;
     }
+<!--more--> 
 
 ## 知识拓展
 

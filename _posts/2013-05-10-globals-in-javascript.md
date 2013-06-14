@@ -48,6 +48,7 @@ tags:
     function sayColor( color ) {
         alert( color );
     }
+<!--more--> 
 
 此时将不再依赖全局变量, 因此在环境改变的时候也不会发生像之前那样的错误. 现在
 `sayColor`关心的只是传递给它的`arguments`.

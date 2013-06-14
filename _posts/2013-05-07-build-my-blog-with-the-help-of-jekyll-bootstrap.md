@@ -1,10 +1,10 @@
 ---
 layout: post
 title: "迁徙个人博客的点滴"
-description: "migration to my own blog"
-tagline: "个中酸甜只有我知"
+tagline: "个中酸甜唯我知"
 category: record
-tags: [life]
+tags:
+  - life
 ---
 {% include JB/setup %}
 
@@ -33,7 +33,6 @@ tags: [life]
 
 中间发生了一个小插曲, 就在配置`.vimrc`的时候由于拷贝了一下网上的几千行`PHP`函数名, 在新浪一连串的
 提示信息下我依然决然的点了发布! 最后'活该'的被封掉了ID, 期间各种`email`, 电话也于事无补. 
-<!--more--> 
 
 ### 新的开始
 
@@ -69,3 +68,102 @@ tags: [life]
 的, 但是后来我换了`oh-my-zsh`, 环境什么的貌似也没动过, 反正就是不能用`rvm`升级, 真不知道怎么这么奇葩!
 实在不行了, 就去淘宝镜像上下了一个`ruby-2.0.0`的源码包手动编译给安装了(真无语啊, 当时这么就只纠结于`rvm`, 
 安装而忘记了这个途径呢)! 到现在博客勉强能用了, 先这样吧, 把考试过了再修修改改.
+
+### 遇到的问题
+
+- May 07, 2013
+
+> 用了bootstrap的模板导航条内容怎么改?
+
+把所有`_includes`下的模板都看完了, `_layouts`下的也找了, 就是没有导航条栏目的
+定义
+
+**解决办法**
+
+> + 在`_includes/themes/twitter/default.html`中写成静态的导航条.
+
+    \{\% assign pages_list = site.pages \%\}
+    \{\% assign group = 'navigation' \%\}
+    \{\% include JB/pages_list \%\}
+
+    <!--改写成-->
+
+    <li>
+        <a href="/archive.html">Archive</a>
+    </li>
+    <li>
+        <a href="/categories.html">Category</a>
+    </li>
+    <li>
+        <a href="/tags.html">Tags</a>
+    </li>
+    <li>
+        <a href="/rss.xml">RSS</a>
+    </li>
+    <li>
+        <a href="http://github.com/luofei2011" target="_blank">Github</a>
+    </li>
+
+> + 给每个页面增加一个权重`weight`, 在遍历显示的时候根据`weight`值进行相应的显示
+
+    ---
+    weight: (1/2/3/4/5...)
+    ---
+
+- May 08, 2013
+
+> `ruby-1.9.2`上安装不了`rdiscount`
+
+  以前学`ruby on rails`的时候装的`ruby`一直没更新过, 截至目前`ruby`版本为2.0.0
+
+  **解决办法:**
+
+  _升级`ruby`版本到1.9.3以上_
+
+- May 09, 2013
+
+> 迁移好的博客在本地显示正常, 放到网上后部分文章乱码.
+  
+  经检查发现, 不能正常访问的文章均有共同点:
+
+    ---
+    tags: ['item1','item2']
+    ---
+
+  原来是语法错误, 改正后:
+
+    ---
+    tags:
+      - item1
+      - item2
+    ---
+  
+  正常显示!
+  
+- May 11, 2013
+
+> 更新了`.com`的域名
+
+虽然免费的`.tk`域名用起来也没啥不好的， 但是出于各方面的考虑还是换成了`.com`域名，早上体检完后在[goDaddy](http://www.godaddy.com)
+上逛了一圈，`.com`需要`$7.8/yer`，不过这个好像还是信息公开的，后来去[中国万网](http://www.net.cn)上一看`.com`才59一年，彻底
+心动了. 然后忍不住手残的买了一个...然后就是现在这个样子了.
+
+June 03, 2013
+
+> The page build failed with the following error:
+> page build failed
+> For information on troubleshooting Jekyll see https://help.github.com/articles/using-jekyll-with-pages#troubleshooting
+> If you have any questions please contact GitHub Support.
+
+由于这两个星期都在考试, 博客基本没有更新. 大概在上个月25号的时候写了一共空的页面
+push上去, 本地运行都是没有问题的, 可是每push一次, 就会给我如上的邮件. google了很
+多解决办法都不行, 最后发现是markdown解释的时候出错了.
+
+    #错误
+    permalink: "some_path.html"
+
+    #我在文章里面加了这个参数, 本想让文件成这样的固定链接, 但是本地运行是正常的.
+    可push了就是不行
+
+    #解决办法
+    #暂时没发现什么好的解决办法, 只是把这句给删除了.

@@ -49,6 +49,7 @@ Firefox复制网景, 然后Safari复制Firefox, 再接下来就是Chrome复制Sa
     if ( document.getElementById ) {
         // do someting
     }
+<!--more--> 
 
 这两种方法不能相提并论, 前者只能检测出是否是IE7, 而后者却能检测出所有支持
 `document.getElementById`的浏览器.

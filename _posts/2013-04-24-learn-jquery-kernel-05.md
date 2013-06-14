@@ -34,6 +34,7 @@ tags: ['jquery内核']
     callback.call(object[i], args);    //每次修改callback方法中this指向为object[i]
 
 有了对象的遍历功能(虽然不健全,但还是有遍历的意思).接下就可以结合前面的选择器功能给对象绑定各种回调方法!
+<!--more--> 
 
 ## $().html的实现
 

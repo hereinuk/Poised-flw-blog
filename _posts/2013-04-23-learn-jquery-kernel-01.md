@@ -30,6 +30,7 @@ tags: ['jquery内核']
     var $ = jQuery = function() {
         //do something
     }
+<!--more--> 
 
 现在理论上是可以用这个构造函数进行实例的创建了
 

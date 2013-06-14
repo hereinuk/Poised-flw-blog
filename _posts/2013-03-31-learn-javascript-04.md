@@ -32,7 +32,7 @@ javascript对象有两种不同的属性,一种是对象自身的属性,另外�
      console.log(o.b); // 2
      // b是o的自身属性吗?是的,该属性的值为2
      // o.[[Prototype]]上还有一个'b'属性,但是它不会被访问到.这种情况称为"属性遮蔽".
-     
+
      console.log(o.c); // 4
      // c是o的自身属性吗?不是,那看看o.[[Prototype]]上有没有.
      // c是o.[[Prototype]]的自身属性吗?是的,该属性的值为4
@@ -40,7 +40,7 @@ javascript对象有两种不同的属性,一种是对象自身的属性,另外�
      // d是o的自身属性吗?不是,那看看o.[[Prototype]]上有没有.
      // d是o.[[Prototype]]的自身属性吗?不是,那看看o.[[Prototype]].[[Prototype]]上有没有.
      // o.[[Prototype]].[[Prototype]]为null,原型链已到顶端,没有d属性,返回undefined
-
+<!--more--> 
 ## 继承方法
 
 JavaScript并没有真正的"方法". JavaScript只有函数,而且一个对象的属性值可以为一个函数. 属性为函数的情况和属性为其他值的情况基本没有差别, 包括"属性遮蔽" (这种情况相当于其他语言的方法重写).

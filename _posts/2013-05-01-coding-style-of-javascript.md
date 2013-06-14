@@ -34,6 +34,7 @@ by [Nicholas C. Zakas](http://book.douban.com/search/Nicholas%20C.%20Zakas).
     function sayName() {
     　　alert( name )
     } 
+<!--more--> 
 
 但是下面的这种情况不会得到预期的结果:
 

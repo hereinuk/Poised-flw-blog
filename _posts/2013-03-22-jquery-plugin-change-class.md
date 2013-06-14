@@ -20,7 +20,6 @@ tags: ['插件']
          this.opts = $.extend({}, $.fn.lf.defaults, options);
          this._init();
      };
-     
      /*
      *    插件的扩展函数    公共方法
       */

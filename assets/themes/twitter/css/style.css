@@ -15,9 +15,13 @@ a:hover {
     color: #c00;
 }
 /*Rewirte h1-h6 tag*/
-h1, h2, h3, h4, h5, h6 {
+h1, h1 a, h2, h3, h4, h5, h6 {
     font-weight: 600;
     color: #c30;
+}
+h1 a:hover {
+    color:green;
+    text-decoration: none;
 }
 h1 {
     font-size: 22px;
@@ -160,4 +164,37 @@ pre.prettyprint code {
 
 .nav li {
     margin: 0 8px;
+}
+/* 首页展示页面 */
+.posts-item {
+    position: relative;
+}
+.posts-item h1 {
+    font-size: 23px;
+    border-bottom: 1px solid #a3a3a3;
+}
+.posts h1 a {
+    padding-left: 15px;
+}
+.arrow-time {
+    background: url(../img/arrow.png) no-repeat;
+    position: absolute;
+    top: 5px;
+    left: -145px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 150px;
+    color: #fff;
+    font-size: 14px;
+    overflow: hidden;
+}
+.arrow-time cite {
+    margin-right: 15px;
+}
+.read-more {
+    margin: 0 0 10px 5px;
+}
+.read-more a {
+    color: #080;
 }

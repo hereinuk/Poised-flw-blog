@@ -44,6 +44,7 @@ tags:
 
     # 重启服务器
     sudo /etc/init.d/apache2 restart
+<!--more--> 
 
 至此服务器的修改算是完事, 哦! 对了, 记得你的配置文件中是把mod_rewrite.so开启的
 

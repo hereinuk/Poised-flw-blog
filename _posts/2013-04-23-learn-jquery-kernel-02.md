@@ -38,6 +38,7 @@ tags: ['jquery内核']
     console.log($().author);    
     console.log($().test());
     console.log($().size());
+<!--more--> 
 
 **考虑几个问题:**
 

@@ -59,6 +59,7 @@ tags: ['jquery内核']
     }
 
     jQuery.fn.init.prototype = jQuery.fn;
+<!--more--> 
 
 ## 测下一下选择器
 

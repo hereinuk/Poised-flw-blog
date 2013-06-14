@@ -39,6 +39,7 @@ tags:
     // 其它方法.
     event.stopPropagation();
     event.preventDefault();
+<!--more--> 
 
 除了bind以外, jquery还有[20给快捷方法](http://www.w3school.com.cn/jquery/jquery_ref_events.asp)为特定的事件绑定事件处理程序.
 

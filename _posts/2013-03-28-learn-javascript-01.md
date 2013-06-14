@@ -24,6 +24,7 @@ parseInt(arg1,arg2):arg2是需要转换的进制如:8/10/16
     parseInt('0...'):octal(8)
 
 一般的认为是10进制
+<!--more--> 
 
 ##### parseFloat: only one parameter
 

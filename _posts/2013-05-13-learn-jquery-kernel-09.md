@@ -36,6 +36,7 @@ Javascript实现, 需要额外的工作:
     var txt = document.createTextNode('测试文本');
     h1.appendChild(txt);    // 往h1中添加文本节点
     document.body.appendChild(h1);
+<!--more--> 
 
 #### 创建属性
 

@@ -40,6 +40,7 @@ tags:
      /var/cache/apt/archives/libreoffice-common_1%3a3.5.7-0ubuntu4_all.deb
     E: Sub-process /usr/bin/dpkg returned an error code (1)
     */
+<!--more--> 
 
 究其原因, 我猜大概是我装了openoffice的原因. 因此libreoffice是unbuntu自带安装的,
 以前我装了openoffice以后就把它给卸载了, 这次再装就出现了上面的错误.

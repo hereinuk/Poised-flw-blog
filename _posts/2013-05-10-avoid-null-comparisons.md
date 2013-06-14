@@ -37,6 +37,7 @@ tags:
     var str = "poised-flw";
 
     typeof str; // "string"
+<!--more--> 
 
 由于不同的对象具有不同的方法, 因此在调用这些方法前检测以下变量的类型能避免一些错
 误的产生:
