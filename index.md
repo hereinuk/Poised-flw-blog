@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Poised-flw的前端博客
 ---
 {% include JB/setup %}
 
