@@ -28,9 +28,13 @@ __组成__： 内容可显示区域、内容容器、滚动条外部容器、滚
 ![滚动条]({{ ASSET_PATH }}/img/20130828.png)
 
 整个过程中需要用到的数据有：
+
 内容可见区域：h
+
 内容容器高度（及所有内容的所有高度）： H
+
 滚动条外部容器（这里讨论和内容可见区域相等）：a
+
 滚动条可拖动部分高度：b
 <!--more-->
 
@@ -79,7 +83,81 @@ __组成__： 内容可显示区域、内容容器、滚动条外部容器、滚
 
 ## 四、代码实现
 
+由于监听了鼠标的移动事件，因此需要保证是在滚动条可拖动部分按下过后才能响应移动事件，并且在拖动过程中需要记录拖动的前一个y轴位置。
 
+	/*
+	 * js实现导航条过程，as算法类似
+	 */
+	 var isMouseDown = false; // 判断鼠标是否出于按下状态
+	 var tmpY; // 记录拖动的前一个位置属性
+	 
+	 b.addEventListener("mousedown", function(e) {
+		e.stopPropagation();
+		isMouseDown = true;
+		tmpY = e.clientY;
+	 });
+	 
+	 // 在捕获阶段响应事件更流畅
+	 document.addEventListener("mousemove", function(e) {
+		e.stopPropagation();
+		var _diffY = e.clientY - tmpY; // 计算得到拖动的距离
+		// 计算滚动条移动的终点
+		_diffY += b.style.top.replace("px", "") * 1;
+		
+		// 必须在按下状态才能响应移动事件
+		if (isMouseDown) {
+			changePosition(_diffY);
+		}
+		
+		// 更新tmpY
+		tmpY = e.clientY;
+	 }, true);
+	 
+	 document.addEventListener("mouseup", function(e) {
+		isMouseDown = false;
+	 });
+	 
+	 // 监听此事件避免拖动过程中选中网页中的文字
+	 document.onselectstart = function() {
+	    return !isMouseDown;
+	}
+	
+	h.addEventListener("mousewheel", function(e) {
+		var _diff = (e.originalEvent.wheelDelta > 0) ? 30 ? - 30, // 滚动一次移动的距离
+			_top = b.style.top.replace("px", "") * 1;
+		
+		_diff = _top + _diff;
+		changePosition(_diff);
+	});
+	
+	function changePosition(dest) {
+		var H, // 内容容器的高度
+		    h, // 可视区域高度，常量
+			_nextTop; // 内容容器的目标位置
+			
+		if (dest < 0)
+			dest = 0;
+		if (dest > h - b)
+			dest = h - b;
+			
+		_nextTop = -(H - h) * dest / (h - b);
+		
+		// 同步改变滚动条位置和内容容器位置
+		H.style.top = _nextTop + "px";
+		b.style.top = dest + "px";
+	}
 
+当然， 还需要有个动态改变滚动条高度的函数，就是在有消息不断添加到容器里面的时候触发的：
+
+	// 根据消息容器的大小计算出滚动条的高度
+	function changeScrollbarLen() {
+		var H,
+			_barLen = h * h / H; // 就一个数学公式计算出滚动条对应的高度
+			
+		a.style.display = "block"; // 证明该显示滚动条了
+		b.style.height = _barLen + "px";
+		
+		// 可以做一个动画效果，模拟消息被从下往上推上去
+	}
 
 
