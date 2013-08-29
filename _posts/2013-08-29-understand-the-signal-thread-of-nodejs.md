@@ -5,8 +5,6 @@ description: "how to understand the signal thread of node.js"
 category: node.js
 tags: 
   - node.js
-  - 验证
-  - 单线程
 ---
 {% include JB/setup %}
 
