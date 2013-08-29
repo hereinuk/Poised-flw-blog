@@ -126,20 +126,21 @@ pre.prettyprint code {
 /* return to totop */
 #totop a, #totp a:visited {
     position: fixed;
-    right: -webkit-calc((100% - 860px) / 2 - 20px);
-    right: -moz-calc((100% - 860px) / 2 - 20px);
-    right: calc((100% - 860px) / 2 - 20px);
+    right: -webkit-calc((100% - 860px) / 2 - 50px);
+    right: -moz-calc((100% - 860px) / 2 - 50px);
+    right: calc((100% - 860px) / 2 - 50px);
     bottom: 50px;
-    background: transparent url(../img/top.gif) no-repeat 0 0;
-    width: 14px;
-    height: 14px;
+    background: url(../img/totop.png) no-repeat;
+	background-position: 0 0;
+    width: 42px;
+    height: 43px;
     overflow: hidden;
     display: none;
     line-height: 1000%;
 }
 
 #totop a:hover {
-    background: transparent url(../img/top.gif) no-repeat 0 -19px;
+    background-position: -53px 0;
 }
 
 /* p 下的img 居中 */
