@@ -105,7 +105,7 @@ Students`这一行！，定义一个构造函数的时候，它默认的prototyp
 
 1. 只继承了`superClass`的`prototype`属性，并没有继承`superClass`构造函数中的属性;
 2. 这样做的优点在于：减少去new一个构造函数的开销！
-3.当然随之的问题是不能单一的通过这个函数就能让`subClass`继承`superClass`的所有属性
+3. 当然随之的问题是不能单一的通过这个函数就能让`subClass`继承`superClass`的所有属性
 
 __改进：__
 
