@@ -43,7 +43,7 @@ tags:
 换成js如何能做到？
 
 <!--more-->
-在解抽到js的继承机制实现之前，先了解一下js的原型链：
+在讲解js的继承机制实现之前，先了解一下js的原型链：
 
     var person = new Person('Poised-flw', 21);
     person.getName(); // "Poised-flw"
@@ -55,3 +55,64 @@ tags:
 所以：__继承的思想： 通过js特有的原型链来实现继承机制！__
 
 ## 基于原型链的继承
+
+####1.直接继承实现
+
+    var Students = function(name, age, sid) {
+        Person.call(this, name, age);
+        this.sid = sid;
+    }
+
+    Students.prototype = new Person(); //把Person放到Students的原型链上实现继承机制
+    Students.prototype.constructor = Students;
+
+    Students.prototype.getResults = function() {
+        // 得到学生的成绩
+    }
+
+一定不要少了`Students.prototype.constructor =
+Students`这一行！，定义一个构造函数的时候，它默认的prototype是一个Object实例，然后prototype的constructor属性自动被设置成该函数本身
+！！！若手工将prototype设置为另一个对象的时候，则新对象自然不会具有原对象的contructor值，故需要重新设置其constructor属性。如：
+
+    var Test = function() {
+        this.time = "now";
+    }
+
+    console.log(Test.prototype); // Object {} 一个空对象
+    console.log(Test.prototype.constructor); // function() {this.time = "now";},及函数本身
+
+    // 若手工改变Test的prototype属性
+    Test.prototype = {
+        someFunc: function() {
+            console.log('hello world!');
+        }
+    };
+    console.log(Test.prototype.constructor); // function Object() { [native code] }
+    // 然后你会发现完全指错了，故手动更改prototype属性的时候需要更改它的constructor指向;
+
+经过上面的测试就知道为什么要修改constructor值了。
+
+#### 2.封装继承的函数extend
+
+    function extend(subClass, superClass) {
+        var F = function() {};
+        F.prototype = superClass.prototype;
+        subClass.prototype = new F();
+        subClass.prototype.constructor = subClass;
+    }
+
+其实这个函数的功能只是对上面继承过程的一个封装，不同的有：
+
+1. 只继承了`superClass`的`prototype`属性，并没有继承`superClass`构造函数中的属性;
+2. 这样做的优点在于：减少去new一个构造函数的开销！
+3.当然随之的问题是不能单一的通过这个函数就能让`subClass`继承`superClass`的所有属性
+
+__改进：__
+
+    // 在Students构造函数中继续添加一行代码：
+    Person.call(this, name, age);
+
+## 小结
+
+利用js的原型链原理，我们可以很容易的实现js的继承机制，尽管不是非常的严格，但是我的目的达到了：
+重复的代码尽量出现一次！
