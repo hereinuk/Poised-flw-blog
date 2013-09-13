@@ -50,7 +50,7 @@ tags:
             
             throw new Error("ajax created failure");
         },
-<!--more-->
+        <!--more-->
         /*
         JSONStringify: function(obj) {
             var stringifyStr = "";
