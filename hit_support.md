@@ -1,0 +1,181 @@
+---
+layout: default
+title: 哈尔滨工业大学评奖评优网站技术支持页
+---
+{% include JB/setup %}
+<div>
+<style type="text/css">
+    a:visited {
+        color: #BBB;
+    }
+    p {
+        padding: 0;
+        margin: 0;
+    }
+    hr {
+        border: 1px dashed #DDD;
+        margin: 10px 0 20px;
+    }
+    .hit-container {
+        padding: 10px;
+    }
+    .title {
+        font-size: 20px;
+        color: green;
+    }
+    .time {
+        color: #eee;
+        font-size: 12px;
+    }
+    .introduce p, .team p {
+        text-indent: 30px;
+        margin-bottom: 5px;
+    }
+    .introduce {
+        margin: 20px 0 30px 0;
+        font-size: 14px;
+    }
+    .photo img {
+        width: 80px;
+        height: 80px;
+        vertical-align: middle;
+        border: none;
+    }
+    .right {
+        display: inline-block;
+        margin-left: 20px;
+        width: 700px;
+    }
+    .photo {
+        display: inline-block;
+        width: 80px;
+        float: left;
+    }
+    .person {
+        font-size: 14px;
+    }
+    .name, .work {
+        margin-bottom: 6px;
+    }
+    .name {
+        font-size: 16px;
+        color: #37A;
+        display: block;
+    }
+    .work {
+        background-color: #F8F8F8;
+        padding: 10px;
+        color: #666;
+    }
+    .weibo, .email {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background: url('{{ ASSET_PATH }}/img/icon.png') no-repeat;
+        vertical-align: middle;
+    }
+    .weibo {
+        background-position: 0 0;
+    }
+    .email {
+        background-position: -21px 0;
+    }
+    .contact {
+        height: 23px;
+        line-height: 23px;
+        color: #BBB;
+        margin-left: 20px;
+    }
+    .message {
+        width: 180px;
+        margin-left: 3px;
+        color: #BBB;
+        text-decoration: none;
+    }
+    a.message:hover {
+        text-decoration: underline;
+    }
+    .width-280 {
+        display: inline-block;
+        width: 280px;
+    }
+</style>
+<div class="hit-container">
+    <p class="title">哈尔滨工业大学评奖评优系统技术支持页</p>
+    <p class="time" id="now"></p>
+    <div class="introduce">
+        <p>哈尔滨工业大学评奖评优网站：
+            <a href="http://xgc.hit.edu.cn/pingyou" target="_blank">http://xgc.hit.edu.cn/pingyou</a>
+        , 以实现更好的更快更便捷的评奖评优为目的，服务全校师生。
+        </p>
+        <p>网站支持多种主流浏览器访问(ie6+)，如您想体验更佳效果，建议使用Chrome等浏览器。</p>
+        <p>如您有任何意见或建议欢迎给我们留言，谢谢！</p>
+    </div>
+    <div class="team">
+        <p>开发团队:</p>
+        <hr/>
+        <div id="wrapper">
+        </div>
+    </div>
+</div>
+<script>
+    var config = [
+        {
+            name: "万邓仁",
+            url: "http://weibo.com/lengyeyoulan",
+            imgUrl: "http://tp1.sinaimg.cn/2098407280/180/5671585836/1",
+            work: "PM / UI设计 / 后台开发",
+            email: "wandengren@gmail.com",
+            weiboNickName: "早起的有为青年"
+        },
+        {
+            name: "骆飞",
+            url: "http://weibo.com/luofeihit2010",
+            imgUrl: "http://tp2.sinaimg.cn/2115048613/180/22848997778/1",
+            work: "前端开发",
+            email: "luofeihit2010@gmail.com",
+            weiboNickName: "Poised_flw"
+        },
+        {
+            name: "朱柯军",
+            url: "http://weibo.com/kjlmfe",
+            imgUrl: "http://tp4.sinaimg.cn/1848746107/180/40004318238/1",
+            work: "后台开发",
+            email: "kjlmfe@gmail.com",
+            weiboNickName: "KJlmfe"
+        }
+    ];
+    
+    window.onload = function() {
+        var str = "",
+            len = config.length, i = 0,
+            p,
+            oWrapper = document.getElementById('wrapper');
+        
+        for (; i < len; i++) {
+            p = config[i];
+            
+            str += '<div class="person">' + 
+                        '<a href="' + p.url + '" class="photo">' +
+                            '<img src="' + p.imgUrl + '">' +
+                        '</a>' +
+                        '<div class="right">' +
+                            '<span class="name">' + p.name + '</span>' +
+                            '<div class="work">' + p.work + '</div>' +
+                            '<div class="contact">' +
+                                '<div class="width-280">' +
+                                    '<a class="weibo" href="' + p.url + '"></a>' +
+                                    '<a class="message" href="' + p.url + '">@' + p.weiboNickName + '</a>' +
+                                '</div>' + 
+                                '<a class="email" href="mailto:' + p.email + '"></a>' +
+                                '<a class="message" href="mailto:' + p.email + '">' + p.email + '</a>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div><hr/>';
+        }
+        
+        oWrapper.innerHTML = str;
+    };
+</script>
+{% include JB/comments %}
+</div>

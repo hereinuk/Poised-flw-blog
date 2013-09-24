@@ -62,6 +62,16 @@
       <div class="content">
         {{ content }}
       </div>
+      
+      <script type="text/javascript" src="{{ ASSET_PATH }}/js/jquery-1.7.2.min.js"></script>
+      <script type="text/javascript" src="{{ ASSET_PATH }}/js/prettify.js"></script>
+      <!--code highlight-->
+      {% include JB/highlight %}
+      <span id="totop">
+          <a href="javascript:void(0)"></a>
+      </span>
+      {% include JB/totop %}
+      {% include JB/analytics %}
 
       <footer>
         <p>
@@ -75,14 +85,5 @@
       </footer>
 
     </div> <!-- /container -->
-    <script type="text/javascript" src="{{ ASSET_PATH }}/js/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="{{ ASSET_PATH }}/js/prettify.js"></script>
-    <!--code highlight-->
-    {% include JB/highlight %}
-    <span id="totop">
-        <a href="javascript:void(0)"></a>
-    </span>
-    {% include JB/totop %}
-    {% include JB/analytics %}
   </body>
 </html>
