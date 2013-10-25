@@ -34,10 +34,10 @@ tags:
 
 #### 接受信息
 <!--more-->
-window.addEventListener('message', function(e) {
-    /*
-     * e.data {string} 发送的信息
-     * e.origin {string} 发送的源地址，可以与postMessage的第二个参数一起使用
-     * */
-    console.log(e.data);
-}, false);
+    window.addEventListener('message', function(e) {
+        /*
+         * e.data {string} 发送的信息
+         * e.origin {string} 发送的源地址，可以与postMessage的第二个参数一起使用
+         * */
+        console.log(e.data);
+    }, false);
