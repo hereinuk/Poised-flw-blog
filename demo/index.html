@@ -1,11 +1,29 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
-  <p>test message</p>
-  <p>hello world</p>
+<script type="text/javascript">
+window.onload = function() {
+    function createIframe(url) {
+        var iframe = document.createElement('iframe');
+        iframe.src = url;
+        iframe.width = 400;
+        iframe.height = 200;
+        iframe.frameborder = 0;
+        iframe.style.border = "solid black 1px";
+        document.getElementById('main').appendChild(iframe);
+    }
+    var url1 = "http://www.poised-flw.tk/demo/iframe.html",
+        //url2 = "http://localhost/test/iframe.html";
+        url2 = "./iframe.html";
+
+    createIframe(url1);
+    createIframe(url2);
+}
+</script>
+<div id="main" style="width: 804px;margin: 0 auto;"></div>
 </body>
 </html>
