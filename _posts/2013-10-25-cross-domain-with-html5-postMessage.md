@@ -29,6 +29,13 @@ tags:
 
     window.setInterval(function() {
         var message = "你好！我是http://www.poised-flw.tk的页面" + (new Date());
+
+        /* 接受第二个参数：代表目标窗口的源地址，只是源地址!
+         * '*'代表哪儿都能发
+         * '/'代表只能给处在同一目录下的窗口发
+         * 若给定地址，如http://www.poised-flw.com;
+         * 则只能向src为这个地址的frame发。
+         */
         window.parent.frames[1].postMessage(message, "*");
     }, 1000);
 
