@@ -17,7 +17,7 @@ tags:
 #### 用法
 
 1. 元素可以拥有负的z-index属性值；
-2. z-index仅能在`定位元素`[^position]上有效.
+2. z-index仅能在定位元素上有效.
 
 [^position]: **定位元素：**`position`为`absolute`、`relative`、`fixed`的元素。
 
@@ -40,64 +40,60 @@ div {
 
 ##### html部分
 
-```
-<div class="z-1">
-	<div class="z-10">
-		<div class="z-15">z-index: 15</div>
-		<div class="z-12">z-index: 12</div>
+	<div class="z-1">
+		<div class="z-10">
+			<div class="z-15">z-index: 15</div>
+			<div class="z-12">z-index: 12</div>
+		</div>
 	</div>
-</div>
-<div class="z-5">z-index: 5</div>
-```
+	<div class="z-5">z-index: 5</div>
 
 ##### css部分
 
-```
-div {
-	text-align: center;
-}
-.z-12, .z-15 {
-	width: 100px;
-	height: 100px;
-	line-height: 100px;
-}
-.z-10 {
-	position: relative;
-	width: 500px;
-	height: 300px;
-	background: #000;
-	margin: 0 auto;
-	z-index: 100;
-}
-.z-12 {
-	position: absolute;
-	z-index: 12;
-	background: #f00;
-	left: -50px;
-}
-.z-15 {
-	position: absolute;
-	z-index: 1;
-	background: #fff;
-	left: -20px;
-	top: 20px;
-}
-.z-5 {
-	position: absolute;
-	width: 1000px;
-	height: 100px;
-	line-height: 100px;
-	top: 50px;
-	background: #00F;
-	z-index: 5;
-}
-.z-1 {
-	/*position: relative;*/
-	/*z-index: 6;*/
-}
-```
+	div {
+		text-align: center;
+	}
+	.z-12, .z-15 {
+		width: 100px;
+		height: 100px;
+		line-height: 100px;
+	}
+	.z-10 {
+		position: relative;
+		width: 500px;
+		height: 300px;
+		background: #000;
+		margin: 0 auto;
+		z-index: 100;
+	}
+	.z-12 {
+		position: absolute;
+		z-index: 12;
+		background: #f00;
+		left: -50px;
+	}
+	.z-15 {
+		position: absolute;
+		z-index: 1;
+		background: #fff;
+		left: -20px;
+		top: 20px;
+	}
+	.z-5 {
+		position: absolute;
+		width: 1000px;
+		height: 100px;
+		line-height: 100px;
+		top: 50px;
+		background: #00F;
+		z-index: 5;
+	}
+	.z-1 {
+		/*position: relative;*/
+		/*z-index: 6;*/
+	}
 
-#### 正常`浏览器`[^w3c]的效果图
+#### 正常浏览器的效果图
 
 ![zIndex_01.png]({{ ASSET_PATH }}/img/20131122_01.png)
 
