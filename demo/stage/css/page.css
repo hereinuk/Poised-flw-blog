@@ -51,7 +51,7 @@
 	top: 8px;
 	left: 0;
 	width: 280px;
-	height: 100px;
+	height: 150px;
 	background: #fff;
 	color: #666;
 	line-height: 100%;
@@ -84,4 +84,12 @@
 .step-info {
 	padding: 20px 10px;
 	text-align: left;
+}
+.step-to {
+	position: absolute;
+	top: 25px;
+	left: 50px;
+	width: 0;
+	height: 0;
+	border-top: 2px dotted #e4e4e4;
 }
