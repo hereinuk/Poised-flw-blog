@@ -109,8 +109,8 @@ a.search-btn:focus {
 	display: block;
 	width: 0;
 	height: 0;
-	border-left: 55px solid rgb(91, 159, 194);
-	border-bottom: 35px solid #1f4e7c;
+	border-left: 1px solid rgb(91, 159, 194);
+	border-bottom: 1px solid #1f4e7c;
 	top: 0;
 	left: 0;
 	z-index: 99;
@@ -124,8 +124,10 @@ a.search-btn:focus {
 }
 .pin-logo {
 	position: absolute;
-	right: 10px;
-	top: 0;
+	right: -10px;
+	top: -20px;
+	display: none;
+	z-index: 100;
 }
 .item .item-title {
 	/*position: absolute;*/

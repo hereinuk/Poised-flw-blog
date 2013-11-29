@@ -14,6 +14,26 @@ $(function() {
 
 		return false;
 	});
+
+	$('div.item').hover(function() {
+		$('div.pin-logo', $(this)).stop().show().animate({
+			'right': 10,
+			'top': 0
+		});
+		$('div.item-corner', $(this)).stop().show().animate({
+			"border-left-width": 55,
+			"border-bottom-width": 35
+		});
+	}, function() {
+		$('div.pin-logo', $(this)).stop().animate({
+			'right': -10,
+			'top': -20
+		}).hide();
+		$('div.item-corner', $(this)).stop().animate({
+			"border-left-width": 1,
+			"border-bottom-width": 1
+		}).hide();
+	});
 });
 
 var FE = {
