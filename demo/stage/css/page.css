@@ -40,10 +40,6 @@
 }
 .step-tips {
 	position: absolute;
-	width: 280px;
-	height: 110px;
-	top: 50px;
-	left: 0;
 	display: none;
 }
 .step-content {
@@ -51,7 +47,7 @@
 	top: 8px;
 	left: 0;
 	width: 280px;
-	height: 150px;
+	min-height: 150px;
 	background: #fff;
 	color: #666;
 	line-height: 100%;
